@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">ChinesePartners</string>
+
+    <!--底部三个tab图标-->
+    <string name="first_tab">&#xe608;</string>
+    <string name="sec_tab">&#xe614;</string>
+    <string name="third_tab">&#xe61d;</string>
+    <string name="fourth_tab">&#xe626;</string>
+    <!--底部三个tab图标-->
+    <!--tab切换临时使用-->
+    <string name="first_tv">"I'm first view"</string>
+    <string name="sec_tv">"I'm sec view"</string>
+    <string name="third_tv">"I'm third view"</string>
+    <string name="fourth_tv">"I'm fourth view"</string>
+    <!--tab切换临时使用-->
 </resources>

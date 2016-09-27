@@ -9,8 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.clannad.R;
-import com.clannad.http.ClannadApi;
-import com.clannad.http.ClannadFactory;
 import com.clannad.utils.Common;
 import com.clannad.widget.SwipeBackLayout;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -25,7 +23,7 @@ import rx.subscriptions.CompositeSubscription;
 
 public abstract class BaseActivity extends AutoLayoutActivity {
 
-    public static final ClannadApi sClannadIO = ClannadFactory.getClannadIOSingleton();
+//    public static final ClannadApi sClannadIO = ClannadFactory.getClannadIOSingleton();
     private CompositeSubscription mCompositeSubscription;
 
     protected SwipeBackLayout layout;
