@@ -1,6 +1,6 @@
-We are ChinesePartners!
-Members:Clannad_sk,gaopao,MR.tao
-Chinese food is delicious!
+##We are ChinesePartners!
+###Members:Clannad_sk,gaopao,MR.tao
+**Chinese food is delicious!**
 
 
 
@@ -14,7 +14,7 @@ Chinese food is delicious!
 
 
 
-To her:
+> To her:
 	For what it’s worth, it’s never too late, 
 	Or in my case, too early, 
 	To be whoever you want to be. 
