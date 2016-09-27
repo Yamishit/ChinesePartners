@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     private CompositeSubscription mCompositeSubscription;
 
     protected SwipeBackLayout layout;
-    String activityName = "";
+    String activityName = " ";
     public int contentId;
     public Activity context;
 
