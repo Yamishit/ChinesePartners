@@ -24,11 +24,6 @@ public class SplashActivity extends BaseActivity {
     ImageView splash_view;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public int setContetId() {
         return R.layout.activity_splash;
     }

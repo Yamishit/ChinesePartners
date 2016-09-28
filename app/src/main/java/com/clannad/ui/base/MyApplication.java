@@ -46,7 +46,7 @@ public class MyApplication extends Application {
             PackageInfo mPackageInfo = this.getPackageManager().getPackageInfo(
                     this.getPackageName(), 0);
             VERSION_NAME = mPackageInfo.versionName;
-            Common.getInstance().TYPE_FACE = Typeface.createFromAsset(getAssets(), "fonts/fzlt.ttf");
+            Common.getInstance().TYPE_FACE = Typeface.createFromAsset(getAssets(), "fonts/fzltxhjw.ttf");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
