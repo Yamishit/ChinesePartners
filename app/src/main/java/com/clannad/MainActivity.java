@@ -58,6 +58,11 @@ public class MainActivity extends BaseActivity {
         id_main_fourthtab.setTypeface(iconfont);
         clearTabColor();
         id_main_firsttab.setTextColor(getResources().getColor(R.color.colorAccent));
+        //一进入就跳转到第一个fragment
+        if (firstFragment == null) {
+            firstFragment = new FirstFragment();
+        }
+        changeFragment(firstFragment);
     }
 
     //不提取clearTabColor()是因为将来主页可能会有更多的事件处理

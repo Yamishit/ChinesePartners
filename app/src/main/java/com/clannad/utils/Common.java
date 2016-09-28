@@ -18,6 +18,8 @@ import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -30,6 +32,7 @@ public class Common {
     public Typeface TYPE_FACE = null;
     //activity集合
     private static ArrayList<Activity> activityList = null;
+    private static List<android.app.Fragment> fragmentList = new LinkedList<android.app.Fragment>();
     private MainActivity mainActivity = null;
 
 
@@ -51,6 +54,18 @@ public class Common {
 
     public static ArrayList<Activity> getActivityList() {
         return activityList;
+    }
+
+    public void addToFragmentList(android.app.Fragment fragment) {
+        if (fragment != null) {
+            fragmentList.add(fragment);
+        }
+    }
+
+    public void removeFragment(android.app.Fragment fragment) {
+        if (fragment != null) {
+            fragmentList.remove(fragment);
+        }
     }
 
     public void addToActivityList(Activity activity) {
