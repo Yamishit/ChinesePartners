@@ -17,7 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 
+import com.clannad.MainActivity;
 import com.clannad.R;
+import com.clannad.ui.SplashActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -57,19 +59,23 @@ public class SwipeBackLayout extends FrameLayout {
 
 
     public void attachToActivity(Activity activity) {
-        mActivity = activity;
-        TypedArray a = activity.getTheme().obtainStyledAttributes(
-                new int[]{android.R.attr.windowBackground});
-        int background = a.getResourceId(0, 0);
-        a.recycle();
+        //为了不在主页和Splash页面侧滑退出,这里加上这个条件判断。
+        if (! (activity instanceof MainActivity || activity instanceof SplashActivity)) {
+            mActivity = activity;
+            TypedArray a = activity.getTheme().obtainStyledAttributes(
+                    new int[]{android.R.attr.windowBackground});
+            int background = a.getResourceId(0, 0);
+            a.recycle();
 
-        ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
-        ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
-        decorChild.setBackgroundResource(background);
-        decor.removeView(decorChild);
-        addView(decorChild);
-        setContentView(decorChild);
-        decor.addView(this);
+            ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
+            ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+            decorChild.setBackgroundResource(background);
+            decor.removeView(decorChild);
+            addView(decorChild);
+            setContentView(decorChild);
+            decor.addView(this);
+        }
+
     }
 
     private void setContentView(View decorChild) {
