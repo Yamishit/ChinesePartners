@@ -7,18 +7,19 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.clannad.MainActivity;
 import com.clannad.R;
+import com.clannad.ui.base.AppStatusTracker;
 import com.clannad.ui.base.BaseActivity;
-import com.clannad.utils.ToastUtils;
+import com.clannad.impl.ConstantValues;
 import com.clannad.widget.CustomVideoView;
 
 import butterknife.Bind;
@@ -45,6 +46,12 @@ public class VideoActivity extends BaseActivity implements MediaPlayer.OnComplet
     @Override
     public int setContetId() {
         return R.layout.activity_splash_video;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        AppStatusTracker.getInstance().setAppStatus(ConstantValues.STATUS_ONLINE);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

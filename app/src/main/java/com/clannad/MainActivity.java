@@ -1,22 +1,22 @@
 package com.clannad;
 
 import android.app.Fragment;
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.clannad.fragments.FirstFragment;
 import com.clannad.fragments.FourthFragment;
 import com.clannad.fragments.SecFragment;
 import com.clannad.fragments.ThirdFragment;
+import com.clannad.ui.VideoActivity;
 import com.clannad.ui.base.BaseActivity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -47,6 +47,21 @@ public class MainActivity extends BaseActivity {
     @Override
     public void getRxMsg() {
 
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        //如果发现是强杀而跳转的就执行protectApp方法
+        String action = intent.getStringExtra(KEY_HOME_ACTION);
+        if (ACTION_BACK_TO_HOME.equals(action)) {
+            protectApp();
+        }
     }
 
     @Override
@@ -124,4 +139,11 @@ public class MainActivity extends BaseActivity {
         id_main_fourthtab.setTextColor(getResources().getColor(R.color.clannad_trans_gray));
     }
 
+    @Override
+    protected void protectApp() {
+        //如果已经在首页并且被强杀了就不用再回首页了,而是直接跳转到引导页面,所以这里不能super。
+        Intent intent = new Intent(this, VideoActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -18,7 +18,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:theme="@style/trans_parent" />
+            android:theme="@style/trans_parent"
+            android:launchMode="singleTask"/>
 
 
 

@@ -25,7 +25,6 @@ public class MyApplication extends Application {
 //    public static PatchManager mPatchManager;
 //    private static final String TAG = "AndFix";
     public static String VERSION_NAME = "";
-
     @Override
     public void onCreate() {
         super.onCreate();

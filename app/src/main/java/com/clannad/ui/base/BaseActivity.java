@@ -1,6 +1,7 @@
 package com.clannad.ui.base;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.clannad.MainActivity;
 import com.clannad.R;
+import com.clannad.impl.ConstantValues;
 import com.clannad.utils.Common;
 import com.clannad.widget.SwipeBackLayout;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -21,7 +24,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by F_ck on 2016/9/24.
  */
 
-public abstract class BaseActivity extends AutoLayoutActivity {
+public abstract class BaseActivity extends AutoLayoutActivity implements ConstantValues {
 
 //    public static final ClannadApi sClannadIO = ClannadFactory.getClannadIOSingleton();
     private CompositeSubscription mCompositeSubscription;
@@ -39,8 +42,41 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         ButterKnife.bind(this);
         context = this;
         init();
-        initData();
-        getRxMsg();
+        switch (AppStatusTracker.getInstance().getAppStatus()) {
+            case STATUS_FORCE_KILLED:
+                protectApp();
+                break;
+            case STATUS_KICK_OUT:
+                kickOut();
+                break;
+            case STATUS_ONLINE:
+            case STATUS_LOGOUT:
+            case STATUS_OFFLINE:
+                getRxMsg();
+                initData();
+                break;
+            default:
+                break;
+        }
+
+
+    }
+
+    /**
+     * 被挤下线
+     */
+    protected void kickOut() {
+        // TODO: 16/9/30  show dialog confirm
+
+    }
+
+    /**
+     * 此方法为了解决应用在后台回收而栈信息却被保留下来,此时应该手动强制重新走一遍
+     */
+    protected void protectApp() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(KEY_HOME_ACTION, ACTION_BACK_TO_HOME);
+        startActivity(intent);
     }
 
 
