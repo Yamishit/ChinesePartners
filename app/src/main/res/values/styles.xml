@@ -29,25 +29,40 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
     <!-- 自定义Dialog -->
-    <style name="CustomDialog" parent="@android:Theme.Dialog">
+    <!--<style name="CustomDialog" parent="@android:Theme.Dialog">
 
-        <!-- windowFrame框为无 -->
+        &lt;!&ndash; windowFrame框为无 &ndash;&gt;
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
-        <!-- 除去背景 -->
+        &lt;!&ndash; 除去背景 &ndash;&gt;
         <item name="android:windowBackground">@android:color/transparent</item>
-        <!-- 是否浮现在activity之上 -->
+        &lt;!&ndash; 是否浮现在activity之上 &ndash;&gt;
         <item name="android:windowIsFloating">true</item>
-        <!-- 是否半透明 -->
+        &lt;!&ndash; 是否半透明 &ndash;&gt;
         <item name="android:windowIsTranslucent">true</item>
-        <!-- 去掉覆盖层 -->
+        &lt;!&ndash; 去掉覆盖层 &ndash;&gt;
         <item name="android:windowContentOverlay">@null</item>
-        <!-- 设置背景颜色 -->
+        &lt;!&ndash; 设置背景颜色 &ndash;&gt;
         <item name="android:background">#00000000</item>
-    </style>
+    </style>-->
     <!-- 自定义Dialog -->
 
     <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar"></style>
+
+
+
+    <!--普通dialog-->
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
 
 
 </resources>

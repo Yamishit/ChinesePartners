@@ -6,10 +6,19 @@
 
     <com.clannad.widget.ZitiTextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="I'm First"
-        android:textSize="50px"
         android:textColor="@android:color/holo_blue_bright"
-        android:gravity="center"/>
+        android:textSize="50px" />
+
+    <com.clannad.widget.ZitiButton
+        android:id="@+id/id_firsttab_reqbt"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@drawable/big_circle_corner"
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:text="点击请求" />
 
 </LinearLayout>

@@ -6,9 +6,9 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
-import com.clannad.MainActivity;
 import com.clannad.R;
-import com.clannad.ui.base.BaseActivity;
+import com.clannad.common.base.BaseActivity;
+import com.clannad.ui.main.activity.MainActivity;
 import com.clannad.utils.AnimationUtil;
 import com.clannad.utils.StatusBarUtil;
 
@@ -24,21 +24,21 @@ public class SplashActivity extends BaseActivity {
     ImageView splash_view;
 
     @Override
-    public int setContetId() {
+    public int getLayoutId() {
         return R.layout.activity_splash;
     }
 
     @Override
-    public void initData() {
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void initView() {
         //设置状态栏透明
         StatusBarUtil.setTranslucentBackground(this);
         //开始执行动画,开始跳转
         startScaleAnimation();
-    }
-
-    @Override
-    public void getRxMsg() {
-
     }
 
     private void startScaleAnimation() {
@@ -58,4 +58,6 @@ public class SplashActivity extends BaseActivity {
             }
         });
     }
+
+
 }

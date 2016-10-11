@@ -1,4 +1,4 @@
-package com.clannad.fragments;
+package com.clannad.ui.main.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;

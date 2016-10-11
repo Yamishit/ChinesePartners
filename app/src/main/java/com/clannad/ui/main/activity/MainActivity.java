@@ -1,4 +1,4 @@
-package com.clannad;
+package com.clannad.ui.main.activity;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -9,12 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.clannad.fragments.FirstFragment;
-import com.clannad.fragments.FourthFragment;
-import com.clannad.fragments.SecFragment;
-import com.clannad.fragments.ThirdFragment;
+import com.clannad.R;
+import com.clannad.common.base.BaseActivity;
+import com.clannad.ui.main.fragments.FirstFragment;
+import com.clannad.ui.main.fragments.FourthFragment;
+import com.clannad.ui.main.fragments.SecFragment;
+import com.clannad.ui.main.fragments.ThirdFragment;
 import com.clannad.ui.VideoActivity;
-import com.clannad.ui.base.BaseActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -39,33 +40,20 @@ public class MainActivity extends BaseActivity {
     private Fragment thirdFragment;
     private Fragment fourthFragment;
 
+
     @Override
-    public int setContetId() {
+    public int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
-    public void getRxMsg() {
+    public void initPresenter() {
 
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        //如果发现是强杀而跳转的就执行protectApp方法
-        String action = intent.getStringExtra(KEY_HOME_ACTION);
-        if (ACTION_BACK_TO_HOME.equals(action)) {
-            protectApp();
-        }
-    }
-
-    @Override
-    public void initData() {
+    public void initView() {
+        SetTranslanteBar();
         Typeface iconfont = Typeface.createFromAsset(getAssets(), "mainfonts/iconfont.ttf");
         id_main_firsttab.setTypeface(iconfont);
         id_main_sectab.setTypeface(iconfont);
@@ -88,7 +76,7 @@ public class MainActivity extends BaseActivity {
             case R.id.id_main_firsttab:
                 clearTabColor();
                 id_main_firsttab.setTextColor(getResources().getColor(R.color.colorAccent));
-                if(firstFragment == null){
+                if (firstFragment == null) {
                     firstFragment = new FirstFragment();
                 }
                 changeFragment(firstFragment);
@@ -97,7 +85,7 @@ public class MainActivity extends BaseActivity {
             case R.id.id_main_sectab:
                 clearTabColor();
                 id_main_sectab.setTextColor(getResources().getColor(R.color.colorAccent));
-                if(secFragment == null){
+                if (secFragment == null) {
                     secFragment = new SecFragment();
                 }
                 changeFragment(secFragment);
@@ -106,7 +94,7 @@ public class MainActivity extends BaseActivity {
             case R.id.id_main_thirdtab:
                 clearTabColor();
                 id_main_thirdtab.setTextColor(getResources().getColor(R.color.colorAccent));
-                if(thirdFragment == null){
+                if (thirdFragment == null) {
                     thirdFragment = new ThirdFragment();
                 }
                 changeFragment(thirdFragment);
@@ -115,7 +103,7 @@ public class MainActivity extends BaseActivity {
             case R.id.id_main_fourthtab:
                 clearTabColor();
                 id_main_fourthtab.setTextColor(getResources().getColor(R.color.colorAccent));
-                if(fourthFragment == null){
+                if (fourthFragment == null) {
                     fourthFragment = new FourthFragment();
                 }
                 changeFragment(fourthFragment);
@@ -139,11 +127,4 @@ public class MainActivity extends BaseActivity {
         id_main_fourthtab.setTextColor(getResources().getColor(R.color.clannad_trans_gray));
     }
 
-    @Override
-    protected void protectApp() {
-        //如果已经在首页并且被强杀了就不用再回首页了,而是直接跳转到引导页面,所以这里不能super。
-        Intent intent = new Intent(this, VideoActivity.class);
-        startActivity(intent);
-        finish();
-    }
 }

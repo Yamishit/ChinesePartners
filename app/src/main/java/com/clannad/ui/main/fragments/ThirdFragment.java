@@ -1,4 +1,4 @@
-package com.clannad.fragments;
+package com.clannad.ui.main.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -13,12 +13,12 @@ import com.clannad.R;
  * Created by F_ck on 2016/9/28.
  */
 
-public class FourthFragment extends Fragment {
+public class ThirdFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_fourth_tab, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_third_tab, container, false);
         return rootView;
     }
 }

@@ -15,11 +15,9 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.clannad.MainActivity;
 import com.clannad.R;
-import com.clannad.ui.base.AppStatusTracker;
-import com.clannad.ui.base.BaseActivity;
-import com.clannad.impl.ConstantValues;
+import com.clannad.common.base.BaseActivity;
+import com.clannad.ui.main.activity.MainActivity;
 import com.clannad.widget.CustomVideoView;
 
 import butterknife.Bind;
@@ -44,24 +42,18 @@ public class VideoActivity extends BaseActivity implements MediaPlayer.OnComplet
     private boolean isFirst = true;
 
     @Override
-    public int setContetId() {
+    public int getLayoutId() {
         return R.layout.activity_splash_video;
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AppStatusTracker.getInstance().setAppStatus(ConstantValues.STATUS_ONLINE);
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void getRxMsg() {
+    public void initPresenter() {
 
     }
 
-
     @Override
-    public void initData() {
+    public void initView() {
+        SetTranslanteBar();
         //设置播放加载路径
         id_splash_videoview.setVideoURI(Uri.parse("android.resource://"
                 + getPackageName() + "/" + R.raw.mishi));
@@ -70,6 +62,7 @@ public class VideoActivity extends BaseActivity implements MediaPlayer.OnComplet
         //循环播放
         id_splash_videoview.setOnCompletionListener(this);
     }
+
 
     @OnClick({R.id.id_splash_start})
     public void onClick(View view) {

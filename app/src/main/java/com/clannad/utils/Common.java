@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.clannad.MainActivity;
+import com.clannad.ui.main.activity.MainActivity;
 
 import java.io.File;
 import java.security.MessageDigest;

@@ -17,9 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 
-import com.clannad.MainActivity;
 import com.clannad.R;
 import com.clannad.ui.SplashActivity;
+import com.clannad.ui.main.activity.MainActivity;
 
 import java.util.LinkedList;
 import java.util.List;
