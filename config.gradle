@@ -32,5 +32,8 @@ ext {
                     "retrofit"            : "com.squareup.retrofit2:retrofit:2.0.0-beta3",
                     "gson"                : "com.squareup.retrofit2:converter-gson:2.0.0-beta4",
                     "rxjava-adapter"      : "com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4",
+                    "weex-sdk"            : "com.taobao.android:weex_sdk:0.5.1",
+                    "picasso"            : "com.squareup.picasso:picasso:2.5.2",
+                    "fastjson"            : "com.alibaba:fastjson:1.1.46.android",
                     "okhttplog"           : "com.squareup.okhttp3:logging-interceptor:3.1.2"]
 }

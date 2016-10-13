@@ -4,6 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.clannad.adapter.WeexImageAdapter;
+import com.taobao.weex.InitConfig;
+import com.taobao.weex.WXEnvironment;
+import com.taobao.weex.WXSDKEngine;
+
 /**
  * Created by F_ck on 2016/10/11.
  */
@@ -40,6 +45,11 @@ public class BaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
         baseApplication = this;
+        //weex模块
+        WXEnvironment.addCustomOptions("appName","TBSample");
+        WXSDKEngine.initialize(this,new InitConfig.Builder()
+                .setImgAdapter(new WeexImageAdapter())
+                .build());
     }
 
     public static Context getAppContext(){

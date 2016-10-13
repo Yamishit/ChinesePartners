@@ -75,6 +75,6 @@ public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListMo
 
     @Override
     public void showErrorTip(String msg) {
-
+        ToastUitl.show(msg,0);
     }
 }

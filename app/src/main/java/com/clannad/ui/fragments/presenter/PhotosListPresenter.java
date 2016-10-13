@@ -10,13 +10,12 @@ import java.util.List;
 
 /**
  * des:图片列表
- * Created by xsf
- * on 2016.09.12:01
  */
 public class PhotosListPresenter extends PhotoListContract.Presenter {
     @Override
     public void getPhotosListDataRequest(int size, int page) {
-        mRxManager.add(mModel.getPhotosListData(size, page).subscribe(new RxSubscriber<List<PhotoGirl>>(mContext, false) {
+        mRxManager.add(mModel.getPhotosListData(size, page)
+                .subscribe(new RxSubscriber<List<PhotoGirl>>(mContext, false) {
             @Override
             public void onStart() {
                 super.onStart();
