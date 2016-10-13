@@ -7,7 +7,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 def releaseTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("GMT+08:00"))
 }
 
 def keyStore = file('meizhi.keystore')
@@ -17,6 +17,10 @@ android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
+//    dataBinding {
+//        enabled = true
+//    }
+
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -25,10 +29,20 @@ android {
         versionName rootProject.ext.android.versionName
     }
 
+
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES.txt'
+
+    }
+    packagingOptions {
+        /*jenkins*/
+        exclude 'AndroidManifest.xml'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+        exclude 'pom.properties'
+        /*jenkins*/
+        exclude 'META-INF/DEPENDENCIES.txt'
+//        exclude 'META-INF/LICENSE.txt'
+//        exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/DEPENDENCIES'
@@ -38,62 +52,121 @@ android {
         exclude 'META-INF/LGPL2.1'
     }
 
+
     lintOptions {
+        disable "InvalidPackage"
+        lintConfig file("lint.xml")
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
         disable 'MissingTranslation', 'ExtraTranslation'
     }
-
-    lintOptions {
-        abortOnError false
-    }
-
     signingConfigs {
-        app1 {
-            storeFile file('meizhi.keystore')
-            storePassword project.hasProperty('STOREPASS') ? STOREPASS : ''
-            keyAlias project.hasProperty('KEYALIAS') ? KEYALIAS : ''
-            keyPassword project.hasProperty('KEYPASS') ? KEYPASS : ''
+        release {
+            storeFile file('toomao.keystore')
+            storePassword 'toomao888'
+            keyAlias 'toomao'
+            keyPassword 'toomao888'
         }
     }
 
+//    signingConfigs {
+//        app1 {
+//            storeFile file('meizhi.keystore')
+//            storePassword project.hasProperty('STOREPASS') ? STOREPASS : ''
+//            keyAlias project.hasProperty('KEYALIAS') ? KEYALIAS : ''
+//            keyPassword project.hasProperty('KEYPASS') ? KEYPASS : ''
+//        }
+//    }
+
     buildTypes {
         release {
-            // 不显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-
+            signingConfig signingConfigs.release
+            jniDebuggable false
             debuggable false
-            minifyEnabled true
+            //代码混淆开关，一定要注意现在已经使用minifyEnabled代替runProguard了
+            minifyEnabled false
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            if (keyStore.exists()) {
-                println "Meizhi: using drakeet's key"
-                signingConfig signingConfigs.app1
-            } else {
-                println "Meizhi: using default key"
-            }
-
+            zipAlignEnabled true
+            shrinkResources false
+            proguardFile 'proguard-project.txt'
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        // 输出apk名称为Meizhi_v1.0_2015-01-15_wandoujia.apk
-                        def fileName = "Meizhi_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
+                    def apk = output.outputFile
+                    if (apk != null && apk.name.endsWith('.apk')) {
+                        def fileName = "clannad_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(apk.parent + "/package", fileName)
                     }
                 }
             }
         }
+    }
 
-        productFlavors {
-            fir {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "fir"]
-            }
-            GooglePlay {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "GooglePlay"]
-            }
-            Umeng {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Umeng"]
-            }
-        }
+
+//    buildTypes {
+//        release {
+//            // 不显示Log
+//            buildConfigField "boolean", "LOG_DEBUG", "false"
+//
+//            debuggable false
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            if (keyStore.exists()) {
+//                println "Meizhi: using drakeet's key"
+//                signingConfig signingConfigs.app1
+//            } else {
+//                println "Meizhi: using default key"
+//            }
+//
+//            applicationVariants.all { variant ->
+//                variant.outputs.each { output ->
+//                    def outputFile = output.outputFile
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                        // 输出apk名称为Meizhi_v1.0_2015-01-15_wandoujia.apk
+//                        def fileName = "Meizhi_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+//                        output.outputFile = new File(outputFile.parent, fileName)
+//                    }
+//                }
+//            }
+//        }
+//
+//        productFlavors {
+//            fir {
+//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "fir"]
+//            }
+//            GooglePlay {
+//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "GooglePlay"]
+//            }
+//            Umeng {
+//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Umeng"]
+//            }
+//        }
+//    }
+
+// 友盟多渠道打包
+    productFlavors {
+        Official {}
+        SanLiuLing {}
+        HuaWei {}
+        Baidu {}
+        NineOneMarket {}
+        AnzhuoShiChang {}
+        YingYongBao {}
+        WanDouJia {}
+        Xiaomi {}
+        MeiZu {}
+        LeShangdian {}
+        Anzhi {}
+        TaoBao {}
+        ZhongYiDong {}
+        Others {}
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 
     compileOptions {
@@ -101,10 +174,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    lintOptions {
-        disable "InvalidPackage"
-        lintConfig file("lint.xml")
+    dexOptions {
+        incremental false
+        preDexLibraries = false
+        jumboMode = false
+        javaMaxHeapSize "4g"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
 }
 
 
