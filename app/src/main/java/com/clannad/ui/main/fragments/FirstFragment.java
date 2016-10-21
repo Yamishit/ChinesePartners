@@ -23,6 +23,10 @@ import butterknife.OnClick;
 
 /**
  * Created by F_ck on 2016/9/28.
+ * 步骤一:UI实现View方法,引用presenter
+ * 步骤二:Presenter调用Model,走Model具体逻辑
+ * 步骤三:Model逻辑实现,回调Presenter方法
+ * 步骤四:Presenter回调View,即回到UI,回调View方法,将处理好得多数据传给View
  */
 
 public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListModel> implements PhotoListContract.View {

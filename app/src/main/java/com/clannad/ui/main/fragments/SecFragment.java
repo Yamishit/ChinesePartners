@@ -71,8 +71,11 @@ public class SecFragment extends BaseFragment {
 
             }
         });
-        renderPage(mInstance, getActivity().getPackageName(),
-                WXFileUtils.loadFileContent("hello.js", getActivity()), WEEX_INDEX_URL, null);
+        mInstance.render("WeexQuickStart",
+                WXFileUtils.loadAsset("tech_list.js", getActivity()),
+                null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
+//        renderPage(mInstance, getActivity().getPackageName(),
+//                WXFileUtils.loadFileContent("hello.js", getActivity()), WEEX_INDEX_URL, null);
     }
 
 
