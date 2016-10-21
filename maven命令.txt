@@ -1,0 +1,21 @@
+mvn compile			编译
+mvn test			测试
+mvn package			打包。会在target目录下生成一个jar包
+mvn clean			删除target
+mvn install			安装jar包到本地仓库中 本地的其他项目可以依赖本地仓库中  maven会先检查本地仓库是否存在依赖，不然就会查找远程仓库
+mvn archetype:generate		使用archetype插件构建项目骨架
+mvn archetype:generate -DgroupId=com.clannad -DartifactId=clannad-test -Dversion=1.0.0SNAPSHOT -Dpackage=com.clannad
+一次性配置，先配置好了直接构建
+archetype:generate
+
+-DgroupId=组织名，公司网址的反写+项目名
+
+-DartifactId=项目名-模块名
+
+-Dversion=版本号
+
+-Dpackage=代码所存在的包名
+
+在构建时，在archetype:generate后加上 -DarchetypeCatalog=local参数
+mvn archetype:generate -DarchetypeCatalog=internal 
+mvn archetype:generate -DarchetypeCatalog=internal -DgroupId=com.clannad -DartifactId=clannad-test -Dversion=1.0.0SNAPSHOT -Dpackage=com.clannad.demo
