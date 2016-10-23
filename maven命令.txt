@@ -19,3 +19,102 @@ archetype:generate
 在构建时，在archetype:generate后加上 -DarchetypeCatalog=local参数
 mvn archetype:generate -DarchetypeCatalog=internal 
 mvn archetype:generate -DarchetypeCatalog=internal -DgroupId=com.clannad -DartifactId=clannad-test -Dversion=1.0.0SNAPSHOT -Dpackage=com.clannad.demo
+
+
+坐标：
+	构件
+仓库：
+	本地仓库；远程仓库
+镜像仓库
+
+更改仓库位置
+
+
+maven生命周期
+clean		清理项目
+	1.pre-clean		执行清理前的工作
+	2.clean			清理上一次构建生成的所有文件
+	3.post-clean		执行清理后的文件
+
+default		构建项目（最核心）
+	compile	test package install
+
+site		生成项目站点
+	1.pre-site	在生成项目站点之前要完成的工作
+	2.site		生成项目的站点文档
+	3.post-site	在生成项目站点后要完成的工作
+	4.site-deploy	发布生成的站点到服务器上
+
+
+
+	<!-- 指定了當前pom的版本 -->
+  	<modelVersion>4.0.0</modelVersion>
+
+  	<groupId>com.clannad.testmaven</groupId>
+  	<artifactId>testmaven</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<packaging>jar</packaging>
+
+	<groupId>反写的公司网址+项目名</groupId>
+  	<artifactId>项目名+模块名</artifactId>
+  	<version>当前项目的版本号，第一个0表示大版本号，第二个0表示分支版本号，第三个0表示小版本好</version>
+  	<packaging>默认是jar   war zip pom</packaging>
+	<name>项目描述名称</name>
+  	<url>项目地址</url>
+	<description>项目描述</description>
+	<developers></developers>
+	<licenses>许可证信息</licenses>
+	<organization>组织信息</organization>
+
+	<dependencies>
+    		<dependency>
+      			<groupId>junit</groupId>
+      			<artifactId>junit</artifactId>
+      			<version>3.8.1</version>
+      			<scope>test</scope>依赖范围  表示只在test中有用
+			<type></type>
+			<optional>设置依赖是否可选 默认为false</optional>
+			<exclusions>排除依赖传递列表
+				<exclusions></exclusions>
+			</exclusions>
+    		</dependency>
+  	</dependencies>
+	依赖的管理
+	<dependecyManagement>
+		<dependencies>不会被运行</dependencies>
+
+
+
+	</dependecyManagement>
+
+	<build>
+		<plugins>插件列表
+  			<plugin>
+  				<!-- 该插件可以将项目源码进行打包 -->
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-source-plugin</artifactId>
+  				<version>2.4</version>
+				
+  				<!-- 希望在运行package命令时，将其源码同时进行打包 -->
+  				<!-- 所以要绑定source -->
+  				<executions>
+  					<execution>
+  						<phase>package</phase>
+  						<goals>
+  							<goal>jar-no-fork</goal>
+  						</goals>
+  					</execution>
+  				</executions>
+  			</plugin>
+		
+		</plugins>
+	</build>
+
+	<parent>通常用于子模块中对父模块中pom的一个继承</parent>
+	<modules>用于聚合多个maven项目
+		<module></module>
+	</modules>
+
+
+
+
