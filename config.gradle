@@ -7,7 +7,7 @@ ext {
     android = [compileSdkVersion: 23,
                buildToolsVersion: "23.0.1",
                applicationId    : "com.clannad",
-               minSdkVersion    : 14,
+               minSdkVersion    : 15,
                targetSdkVersion : 22,
                versionCode      : 10,
                versionName      : "1.0.0"]
@@ -35,5 +35,6 @@ ext {
                     "weex-sdk"            : "com.taobao.android:weex_sdk:0.8.0.1",
                     "picasso"             : "com.squareup.picasso:picasso:2.5.2",
                     "fastjson"            : "com.alibaba:fastjson:1.1.46.android",
+                    "Yalantis-sidemenu"   : "com.yalantis:sidemenu:1.0",
                     "okhttplog"           : "com.squareup.okhttp3:logging-interceptor:3.1.2"]
 }

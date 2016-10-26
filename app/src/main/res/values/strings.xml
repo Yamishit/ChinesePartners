@@ -13,4 +13,9 @@
     <string name="third_tv">"I'm third view"</string>
     <string name="fourth_tv">"I'm fourth view"</string>
     <!--tab切换临时使用-->
+    <!--sidemenu-->
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="action_settings">Settings</string>
+    <!--sidemenu-->
 </resources>

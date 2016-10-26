@@ -12,6 +12,12 @@ def releaseTime() {
 
 def keyStore = file('meizhi.keystore')
 
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
 android {
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -213,6 +219,8 @@ dependencies {
     compile rootProject.ext.dependencies["weex-sdk"]
     compile rootProject.ext.dependencies["picasso"]
     compile rootProject.ext.dependencies["fastjson"]
+    compile rootProject.ext.dependencies["Yalantis-sidemenu"]
+    compile 'com.github.ozodrukh:CircularReveal:1.0.4'
     retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
 
 }
