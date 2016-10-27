@@ -54,13 +54,14 @@ public class VideoActivity extends BaseActivity implements MediaPlayer.OnComplet
     @Override
     public void initView() {
         SetTranslanteBar();
-        //设置播放加载路径
-        id_splash_videoview.setVideoURI(Uri.parse("android.resource://"
-                + getPackageName() + "/" + R.raw.mishi));
-        //播放
-        id_splash_videoview.start();
-        //循环播放
-        id_splash_videoview.setOnCompletionListener(this);
+        startImgBoom();
+//        //设置播放加载路径
+//        id_splash_videoview.setVideoURI(Uri.parse("android.resource://"
+//                + getPackageName() + "/" + R.raw.mishi));
+//        //播放
+//        id_splash_videoview.start();
+//        //循环播放
+//        id_splash_videoview.setOnCompletionListener(this);
     }
 
 
@@ -87,6 +88,10 @@ public class VideoActivity extends BaseActivity implements MediaPlayer.OnComplet
 
     @Override
     public void onCompletion(MediaPlayer mp) {
+        startImgBoom();
+    }
+
+    public void startImgBoom(){
         startAni(id_splash_view);
         ObjectAnimator.ofFloat(id_splash_start, "alpha", 0F, 1F).setDuration(1000).start();
     }

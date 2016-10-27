@@ -1,10 +1,7 @@
 package com.clannad.ui.main.fragments;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.clannad.R;
 import com.clannad.bean.PhotoGirl;
@@ -14,13 +11,11 @@ import com.clannad.common.commonutils.ToastUitl;
 import com.clannad.ui.fragments.contract.PhotoListContract;
 import com.clannad.ui.fragments.model.PhotosListModel;
 import com.clannad.ui.fragments.presenter.PhotosListPresenter;
-import com.clannad.ui.main.activity.SideActivity;
 import com.clannad.widget.ZitiButton;
 
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -59,10 +54,10 @@ public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListMo
         Intent intent = null;
         switch (view.getId()){
             case R.id.id_firsttab_reqbt:
-                intent = new Intent(getActivity(), SideActivity.class);
-                getActivity().startActivity(intent);
 //                mPresenter.getPhotosListDataRequest(SIZE, mStartPage);
                 break;
+
+
         }
     }
 

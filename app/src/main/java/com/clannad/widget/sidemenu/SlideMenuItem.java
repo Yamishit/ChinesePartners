@@ -1,9 +1,8 @@
-package com.clannad.yalantis;
+package com.clannad.widget.sidemenu;
 
-import yalantis.com.sidemenu.interfaces.Resourceble;
 
 /**
- * Created by Konstantin on 23.12.2014.
+ * Created by F_ck on 2016/10/27.
  */
 public class SlideMenuItem implements Resourceble {
     private String name;

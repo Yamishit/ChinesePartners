@@ -1,4 +1,4 @@
-package com.clannad.yalantis;
+package com.clannad.widget.sidemenu;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;
@@ -8,7 +8,6 @@ import android.view.animation.Transformation;
 /**
  * Created by F_ck on 2016/10/26.
  */
-
 public class FilpAnimation extends Animation {
     private final float mFromDegrees;
     private final float mToDegrees;
@@ -16,9 +15,10 @@ public class FilpAnimation extends Animation {
     private final float mCenterY;
     private Camera mCamera;
 
-    public FilpAnimation(float mCenterY, float mCenterX, float mToDegrees, float mFromDegrees) {
+    public FilpAnimation(float mFromDegrees, float mToDegrees,
+                         float centerX, float mCenterY) {
         this.mCenterY = mCenterY;
-        this.mCenterX = mCenterX;
+        this.mCenterX = centerX;
         this.mToDegrees = mToDegrees;
         this.mFromDegrees = mFromDegrees;
     }

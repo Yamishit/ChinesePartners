@@ -1,7 +1,7 @@
-package com.clannad.yalantis;
+package com.clannad.widget.sidemenu;
 
 /**
- * Created by Konstantin on 12.01.2015.
+ * Created by F_ck on 2016/10/27.
  */
 public interface Resourceble {
     public int getImageRes();

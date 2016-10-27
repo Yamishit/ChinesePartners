@@ -27,10 +27,6 @@
             android:theme="@style/trans_parent"
             android:launchMode="singleTask"/>
 
-        <activity android:name="com.clannad.ui.main.activity.SideActivity"
-            android:theme="@style/trans_parent"
-            android:launchMode="singleTask"/>
-
         <!--AUTO_LAYOUT  UI设计图给出的图片比例-->
         <meta-data
             android:name="design_width"

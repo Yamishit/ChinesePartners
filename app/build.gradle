@@ -4,20 +4,11 @@
 */
 
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 
 def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("GMT+08:00"))
 }
-
-def keyStore = file('meizhi.keystore')
-
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-}
-
 android {
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -110,48 +101,6 @@ android {
         }
     }
 
-
-//    buildTypes {
-//        release {
-//            // 不显示Log
-//            buildConfigField "boolean", "LOG_DEBUG", "false"
-//
-//            debuggable false
-//            minifyEnabled true
-//            shrinkResources true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            if (keyStore.exists()) {
-//                println "Meizhi: using drakeet's key"
-//                signingConfig signingConfigs.app1
-//            } else {
-//                println "Meizhi: using default key"
-//            }
-//
-//            applicationVariants.all { variant ->
-//                variant.outputs.each { output ->
-//                    def outputFile = output.outputFile
-//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-//                        // 输出apk名称为Meizhi_v1.0_2015-01-15_wandoujia.apk
-//                        def fileName = "Meizhi_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-//                        output.outputFile = new File(outputFile.parent, fileName)
-//                    }
-//                }
-//            }
-//        }
-//
-//        productFlavors {
-//            fir {
-//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "fir"]
-//            }
-//            GooglePlay {
-//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "GooglePlay"]
-//            }
-//            Umeng {
-//                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Umeng"]
-//            }
-//        }
-//    }
-
 // 友盟多渠道打包
     productFlavors {
         Official {}
@@ -220,8 +169,8 @@ dependencies {
     compile rootProject.ext.dependencies["picasso"]
     compile rootProject.ext.dependencies["fastjson"]
     compile rootProject.ext.dependencies["Yalantis-sidemenu"]
-    compile 'com.github.ozodrukh:CircularReveal:1.0.4'
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
+//    compile 'com.github.ozodrukh:CircularReveal:1.0.4'
+//    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
 
 }
 
