@@ -20,6 +20,13 @@ import com.clannad.common.commonutils.TUtil;
 import com.clannad.common.commonutils.ToastUitl;
 import com.clannad.common.commonwidget.LoadingDialog;
 import com.clannad.common.commonwidget.StatusBarCompat;
+import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.umeng.analytics.MobclickAgent;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -167,6 +174,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initImageLoader();
         mRxManager = new RxManager();
         doBeforeSetcontentView();
         setContentView(getLayoutId());
@@ -365,6 +373,33 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
             MobclickAgent.onPause(this);
         }
     }
+
+        @SuppressWarnings("deprecation")
+        private void initImageLoader() {
+            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                    this)
+                    .memoryCacheExtraOptions(480, 800)
+                    // default = device screen dimensions
+                    .threadPoolSize(3)
+                    // default
+                    .threadPriority(Thread.NORM_PRIORITY - 1)
+                    // default
+                    .tasksProcessingOrder(QueueProcessingType.FIFO)
+                    // default
+                    .denyCacheImageMultipleSizesInMemory()
+                    .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+                    .memoryCacheSize(2 * 1024 * 1024).memoryCacheSizePercentage(13) // default
+                    .discCacheSize(50 * 1024 * 1024) // 缓冲大小
+                    .discCacheFileCount(100) // 缓冲文件数目
+                    .discCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
+                    .imageDownloader(new BaseImageDownloader(this)) // default
+                    .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
+                    .writeDebugLogs().build();
+
+            // 2.单例ImageLoader类的初始化
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.init(config);
+        }
 
     @Override
     protected void onDestroy() {

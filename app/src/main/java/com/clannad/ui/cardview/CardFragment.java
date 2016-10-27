@@ -1,41 +1,25 @@
-package com.clannad.ui.main.fragments;
+package com.clannad.ui.cardview;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.clannad.R;
-import com.clannad.bean.PhotoGirl;
-import com.clannad.common.base.BaseFragment;
-import com.clannad.common.commonutils.LogUtils;
-import com.clannad.common.commonutils.ToastUitl;
-import com.clannad.ui.cardview.CardDataItem;
-import com.clannad.ui.cardview.CardSlidePanel;
-import com.clannad.ui.fragments.contract.PhotoListContract;
-import com.clannad.ui.fragments.model.PhotosListModel;
-import com.clannad.ui.fragments.presenter.PhotosListPresenter;
-import com.clannad.widget.ZitiButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.OnClick;
-
 /**
- * Created by F_ck on 2016/9/28.
- * 步骤一:UI实现View方法,引用presenter
- * 步骤二:Presenter调用Model,走Model具体逻辑
- * 步骤三:Model逻辑实现,回调Presenter方法
- * 步骤四:Presenter回调View,即回到UI,回调View方法,将处理好得多数据传给View
+ * 卡片Fragment
+ *
+ * @author xmuSistone
  */
 @SuppressLint({"HandlerLeak", "NewApi", "InflateParams"})
-
-public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListModel> implements PhotoListContract.View {
-
-
-
+public class CardFragment extends Fragment {
 
     private CardSlidePanel.CardSwitchListener cardSwitchListener;
 
@@ -52,25 +36,21 @@ public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListMo
             "assets://wall08.jpg", "assets://wall09.jpg",
             "assets://wall10.jpg", "assets://wall11.jpg", "assets://wall12.jpg"}; // 24个图片资源名称
 
-    private String names[] = {"金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪",
-            "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪",
-            "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪"}; // 24个人名
+    private String names[] = {"郭富城", "刘德华", "张学友", "李连杰", "成龙", "谢霆锋", "李易峰",
+            "霍建华", "胡歌", "曾志伟", "吴孟达", "梁朝伟", "周星驰", "赵本山", "郭德纲", "周润发", "邓超",
+            "王祖蓝", "王宝强", "黄晓明", "张卫健", "徐峥", "李亚鹏", "郑伊健"}; // 24个人名
 
     private List<CardDataItem> dataList = new ArrayList<CardDataItem>();
 
-
     @Override
-    protected int getLayoutId() {
-        return R.layout.card_layout;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.card_layout, null);
+        initView(rootView);
+        return rootView;
     }
 
-    @Override
-    protected void initPresenter() {
-        mPresenter.setVM(this,mModel);
-    }
-
-    @Override
-    protected void initView() {
+    private void initView(View rootView) {
         CardSlidePanel slidePanel = (CardSlidePanel) rootView
                 .findViewById(R.id.image_slide_panel);
         cardSwitchListener = new CardSlidePanel.CardSwitchListener() {
@@ -95,6 +75,7 @@ public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListMo
         prepareDataList();
         slidePanel.fillData(dataList);
     }
+
     private void prepareDataList() {
         int num = imagePaths.length;
 
@@ -110,36 +91,4 @@ public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListMo
         }
     }
 
-//    @OnClick({R.id.id_firsttab_reqbt})
-//    public void onClick(View view){
-//        Intent intent = null;
-//        switch (view.getId()){
-//            case R.id.id_firsttab_reqbt:
-////                mPresenter.getPhotosListDataRequest(SIZE, mStartPage);
-//                break;
-//
-//
-//        }
-//    }
-
-    @Override
-    public void returnPhotosListData(List<PhotoGirl> photoGirls) {
-        ToastUitl.show(photoGirls.get(0).getDesc(),0);
-        LogUtils.logd(photoGirls.toString());
-    }
-
-    @Override
-    public void showLoading(String title) {
-
-    }
-
-    @Override
-    public void stopLoading() {
-
-    }
-
-    @Override
-    public void showErrorTip(String msg) {
-        ToastUitl.show(msg,0);
-    }
 }
