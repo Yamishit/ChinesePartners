@@ -39,11 +39,11 @@ public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListMo
 
     private CardSlidePanel.CardSwitchListener cardSwitchListener;
 
-    private String imagePaths[] = {"assets://wall01.jpg",
-            "assets://wall02.jpg", "assets://wall03.jpg",
-            "assets://wall04.jpg", "assets://wall05.jpg",
-            "assets://wall06.jpg", "assets://wall07.jpg",
-            "assets://wall08.jpg", "assets://wall09.jpg",
+    private String imagePaths[] = {"assets://wall01.jpeg",
+            "assets://wall02.jpeg", "assets://wall03.jpeg",
+            "assets://wall04.jpeg", "assets://wall05.jpeg",
+            "assets://wall06.jpeg", "assets://wall07.jpeg",
+            "assets://wall08.jpeg", "assets://wall09.jpg",
             "assets://wall10.jpg", "assets://wall11.jpg",
             "assets://wall12.jpg", "assets://wall01.jpg",
             "assets://wall02.jpg", "assets://wall03.jpg",
@@ -52,9 +52,9 @@ public class FirstFragment extends BaseFragment<PhotosListPresenter,PhotosListMo
             "assets://wall08.jpg", "assets://wall09.jpg",
             "assets://wall10.jpg", "assets://wall11.jpg", "assets://wall12.jpg"}; // 24个图片资源名称
 
-    private String names[] = {"金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪",
-            "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪",
-            "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪", "金琪琪"}; // 24个人名
+    private String names[] = {"", "爱犬邵康", "", "", "", "", "",
+            "", "", "", "", "", "", "", "", "", "",
+            "", "", "", "", "", "", ""}; // 24个人名
 
     private List<CardDataItem> dataList = new ArrayList<CardDataItem>();
 
