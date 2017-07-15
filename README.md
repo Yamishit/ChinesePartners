@@ -1,5 +1,5 @@
 ## We are ChinesePartners!
-###Members:Clannad_sk,gaopao,MR.tao
+Members:Clannad_sk
 **Chinese food is delicious!**
 
 
